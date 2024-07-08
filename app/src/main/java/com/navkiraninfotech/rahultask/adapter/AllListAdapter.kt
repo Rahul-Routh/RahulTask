@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.navkiraninfotech.rahultask.R
 import com.navkiraninfotech.rahultask.activity.MainActivity
 import com.navkiraninfotech.rahultask.dataClass.AllListDetails
@@ -29,9 +30,7 @@ class AllListAdapter(val activity : MainActivity?) :
 
         binding.switchAssistant.setText(data.app_name)
 
-        /*Glide.with(binding.imageIcon.context)
-                .load(it.app_icon)
-                .into(binding.imageIcon)*/
+        Glide.with(binding.imageIcon.context).load(data.app_icon).into(binding.imageIcon)
 
     }
 

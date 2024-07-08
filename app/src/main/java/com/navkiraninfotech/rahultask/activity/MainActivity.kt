@@ -2,6 +2,8 @@ package com.navkiraninfotech.rahultask.activity
 
 import android.app.Application
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +37,8 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Server Not Response Properly", Toast.LENGTH_SHORT).show()
             }else {
                 if (it.success.equals(true)) {
+                    allListDetailsArrayList.clear()
+
                     Log.d("Datsadsadsdsadsadsaa", it.data.app_list.toString())
 
                     it.data.app_list.forEach {
@@ -54,6 +58,29 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+
+        binding.search.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(query1: CharSequence, start: Int, before: Int, count: Int) {
+
+
+                var query = query1
+                query = query.toString().uppercase()
+                val filteredList: ArrayList<AllListDetails> = ArrayList()
+                for (i in 0 until allListDetailsArrayList.size) {
+                    val appName: String = allListDetailsArrayList.get(i).app_name.uppercase()
+
+                    if (appName.contains(query)) {
+                        filteredList.add(allListDetailsArrayList.get(i))
+                    }
+                }
+                allListAdapter.updateList(filteredList)
+                binding.recyclerView.setAdapter(allListAdapter)
+
+
+            }
+        })
 
     }
 

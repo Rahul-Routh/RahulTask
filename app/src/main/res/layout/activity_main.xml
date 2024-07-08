@@ -13,47 +13,57 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="16dp"
-                android:background="#4CAF50">
+                android:orientation="vertical"
+                android:background="@color/red">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="16dp">
 
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/profile_pic" />
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/profile_pic" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="Rahul Routh"
+                        android:textStyle="bold"
+                        android:textSize="24sp"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Rahul Routh"
-                    android:textSize="24sp"
-                    android:textColor="@android:color/white" />
+                    android:text="Android Developer"
+                    android:gravity="center"
+                    android:background="@color/white"
+                    android:layout_gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="@color/red"
+                    android:drawablePadding="8dp"
+                    android:padding="16dp" />
+
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Android Developer"
-                android:gravity="center"
-                android:textSize="18sp"
-                android:textColor="@android:color/holo_green_dark"
-                android:drawablePadding="8dp"
-                android:padding="16dp" />
 
-            <SearchView
+
+            <!--<SearchView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:queryHint="Search"
                 android:layout_margin="16dp" />
-
+-->
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -62,12 +72,12 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:hint="Search......."
-                android:textColorHint="@color/orange"
+                android:textColorHint="@color/red"
                 app:boxCornerRadiusBottomEnd="35dp"
                 app:boxCornerRadiusBottomStart="35dp"
                 app:boxCornerRadiusTopEnd="35dp"
                 app:boxCornerRadiusTopStart="35dp"
-                app:boxStrokeColor="@color/light_orange"
+                app:boxStrokeColor="@color/light_red"
                 app:endIconDrawable="@drawable/profile_pic">
 
                 <com.google.android.material.textfield.TextInputEditText
