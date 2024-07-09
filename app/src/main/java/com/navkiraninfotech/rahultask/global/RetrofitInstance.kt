@@ -1,4 +1,4 @@
-package com.surya.suryamfinderproject.extra
+package com.navkiraninfotech.rahultask.global
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

@@ -7,7 +7,17 @@
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:colorAccent" tools:targetApi="lollipop">@color/light_red</item>
+        <item name="colorAccent">@color/red</item>
+    </style>
+
+    <style name="CustomDialogTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
 </resources>

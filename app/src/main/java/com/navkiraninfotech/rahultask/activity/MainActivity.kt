@@ -1,19 +1,32 @@
 package com.navkiraninfotech.rahultask.activity
 
 import android.app.Application
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.ViewGroup
+import android.view.Window
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.navkiraninfotech.rahultask.R
 import com.navkiraninfotech.rahultask.adapter.AllListAdapter
 import com.navkiraninfotech.rahultask.dataClass.AllListDetails
 import com.navkiraninfotech.rahultask.databinding.ActivityMainBinding
+import com.navkiraninfotech.rahultask.global.CustomProgressDialog
 import com.navkiraninfotech.rahultask.model.AllListMasterModel
+import java.util.Objects
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +35,11 @@ class MainActivity : AppCompatActivity() {
     val allListAdapter by lazy {  AllListAdapter(this) }
     private val allListMasterModel by lazy {  AllListMasterModel(Application()) }
     private val allListDetailsArrayList : ArrayList<AllListDetails>  = ArrayList()
+
+    lateinit var imageInString:String
+    var uriGet: Uri? = null
+
+    val customeprogressdialog by lazy { this.let { CustomProgressDialog(it) } }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +50,11 @@ class MainActivity : AppCompatActivity() {
 
         allListMasterModel.getAllMatList("378")
 
+        binding.swipeRefresh.setOnRefreshListener {
+            allListMasterModel.getAllMatList("378")
+            allListDetailsArrayList.clear()
+        }
+
         allListMasterModel.allListDataDataResponse.observe(this) {
             if (it == null){
                 Toast.makeText(this, "Server Not Response Properly", Toast.LENGTH_SHORT).show()
@@ -40,6 +63,10 @@ class MainActivity : AppCompatActivity() {
                     allListDetailsArrayList.clear()
 
                     Log.d("Datsadsadsdsadsadsaa", it.data.app_list.toString())
+
+                    if (binding.swipeRefresh.isRefreshing)
+                        binding.swipeRefresh.isRefreshing = false
+
 
                     it.data.app_list.forEach {
                         allListDetailsArrayList.add(it)
@@ -82,6 +109,44 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        binding.uploadPhoto.setOnClickListener {
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+
+        }
+
+        binding.imageProfile.setOnClickListener {
+            val builder = Dialog(this)
+            builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            Objects.requireNonNull(builder.window)?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            val imageView = ImageView(this)
+
+            Glide.with(this).load(uriGet).placeholder(R.drawable.profile_pic).into(imageView)
+
+            val layoutParams = RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            builder.addContentView(imageView, layoutParams)
+            builder.show()
+        }
+
+        allListMasterModel.isLoading.observe(this){
+            if(it){
+                customeprogressdialog.start("Please Wait...")
+            }else{
+                customeprogressdialog.stop()
+            }
+        }
+
+    }
+
+    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        if (uri != null) {
+            Glide.with(this).load(uri).into(binding.imageProfile)
+            uriGet = uri
+        } else {
+            Log.d("PhotoPicker", "No media selected")
+        }
     }
 
 }

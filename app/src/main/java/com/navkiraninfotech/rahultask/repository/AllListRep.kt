@@ -1,7 +1,7 @@
 package com.navkiraninfotech.rahultask.repository
 
 import com.navkiraninfotech.rahultask.dataClass.ALlList
-import com.surya.suryamfinderproject.extra.RetrofitInstance
+import com.navkiraninfotech.rahultask.global.RetrofitInstance
 import retrofit2.Response
 
 object AllListRep {

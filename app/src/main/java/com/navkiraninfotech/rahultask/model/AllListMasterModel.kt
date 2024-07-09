@@ -17,8 +17,11 @@ class AllListMasterModel(application: Application) : AndroidViewModel(applicatio
     val allListDataDataResponse: LiveData<ALlList> get() = allListData
 
 
+    var _isLoading: MutableLiveData<Boolean> = MutableLiveData()
+    val isLoading: LiveData<Boolean> get() = _isLoading
+
     fun getAllMatList(kidId: String) {
-        //_isLoading.value = true
+        _isLoading.value = true
         val params: HashMap<String,String> = HashMap()
         params.put("kid_id", kidId)
 
@@ -31,10 +34,11 @@ class AllListMasterModel(application: Application) : AndroidViewModel(applicatio
                 } else {
                     allListData.value = null
                 }
+                _isLoading.value = false
 
             }catch(exception: IOException) {
                 allListData.value = null
-                //_isLoading.value = false
+                _isLoading.value = false
                 exception.printStackTrace()
             }
         }
