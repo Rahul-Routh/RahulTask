@@ -16,7 +16,6 @@ class AllListMasterModel(application: Application) : AndroidViewModel(applicatio
     var allListData: MutableLiveData<ALlList> = MutableLiveData()
     val allListDataDataResponse: LiveData<ALlList> get() = allListData
 
-
     var _isLoading: MutableLiveData<Boolean> = MutableLiveData()
     val isLoading: LiveData<Boolean> get() = _isLoading
 

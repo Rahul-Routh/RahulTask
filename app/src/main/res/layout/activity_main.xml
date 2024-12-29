@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@color/red">
+                android:background="@color/green">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
                     android:layout_gravity="center"
                     android:textSize="16sp"
                     android:background="@drawable/position_back"
-                    android:textColor="@color/red"
+                    android:textColor="@color/green"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingTop="5dp"
@@ -116,12 +116,12 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:hint="Search......."
-                android:textColorHint="@color/red"
+                android:textColorHint="@color/green"
                 app:boxCornerRadiusBottomEnd="35dp"
                 app:boxCornerRadiusBottomStart="35dp"
                 app:boxCornerRadiusTopEnd="35dp"
                 app:boxCornerRadiusTopStart="35dp"
-                app:boxStrokeColor="@color/light_red"
+                app:boxStrokeColor="@color/light_green"
                 app:endIconDrawable="@drawable/profile_pic">
 
                 <com.google.android.material.textfield.TextInputEditText
